@@ -1,0 +1,16 @@
+/*test function call argument*/
+int x;
+int z;
+int y[8];
+int h(void){
+	int x;
+	int z;
+	int y[8];
+	$ 8 + x + z;
+	return z;
+}
+
+void g(int x[], int y, int z[]){
+	g(y, 7 + 9 - y[9], y);
+	h();
+}

@@ -1,0 +1,9 @@
+/*test for declaration*/
+int x;
+int y[8];
+int z;
+void main(void){
+	int x;
+	int y[7];
+	$ z + 6;
+}

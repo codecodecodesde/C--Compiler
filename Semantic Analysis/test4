@@ -1,0 +1,57 @@
+/*combination test: to test printST*/
+
+int x;
+int func(int x[], int y, int z[]){
+	int x;
+	while(x >= 9){
+		int z;
+		if(3 >= 8){
+			int x;
+			if(4 <= 6){
+				int m;
+				break;
+			}
+			break;
+		}
+		break;
+	}
+
+	while(x < 7);	
+}
+
+int call(void){
+	int i[8];
+	int z[7];
+	func(i, 3, z);
+	return;	
+}
+
+int z;
+int m;
+int y[8];
+int h(void){
+	int x;
+	int z;
+	int y[8];
+	$ 8 + x + z;
+	return z;
+}
+
+void g(int x[], int y, int z[]){
+	g(y, 7 + 9 - y[9], y);
+	h();
+		while(x >= 9){
+		int z;
+		if(3 >= 8){
+			int x;
+			if(4 <= 6){
+				int m;
+				break;
+			}
+			break;
+		}
+		break;
+	}
+
+	while(x < 7);
+}
