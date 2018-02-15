@@ -8,6 +8,9 @@
 #include <iostream>
 #include <set>
 #include "globals.h"
+
+SymbolTable* head;
+
 SymbolTable* analyze_block(TreeNode* root, string name, SymbolTable* parent);
 
 nodeInfo* getNodeInfo(SymbolTable* current, string key){
@@ -20,20 +23,42 @@ nodeInfo* getNodeInfo(SymbolTable* current, string key){
     return &current->table.at(key);
 }
 
+nodeInfo* getParamNodeInfo(SymbolTable* current, string paramName){
+    string funcName = current->scopeName;
+    nodeInfo info = head->table.find(funcName)->second;
+    params* param = info.paramList;
+    while(param != NULL){
+        if(param->param_name.compare(paramName) == 0){
+            nodeInfo* paramInfo = new nodeInfo();
+            paramInfo->isArray = param->isArray;
+            paramInfo->type = param->type;
+            return paramInfo;
+        }
+    }
+    return 0;
+}
+
 int analyze_expr(TreeNode* root, SymbolTable* current){
+    int param = 0;
     if(root->op == VAR){
         //find var declaration
         nodeInfo* info = getNodeInfo(current, root->name);
         if(info == 0){
-            cerr << root->name << " is undeclared before use" << endl;
-            exit(1);
+            info = getParamNodeInfo(current, root->name);
+            if(info == 0){
+                cerr << root->name << " is undeclared before use" << endl;
+                exit(1);
+            }else{
+                param = 1;
+            }
         }
+        
         if(info->isArray != root->isArray){
             cerr << root->name << " is undeclared before use" << endl;
             cerr << root->name << " may be a previous defined array" << endl;
             exit(1);
         }else{
-            if(info->isArray == true){
+            if(info->isArray == true && param == 0){
                 if(analyze_expr(root->child[0], current) != INT){
                     cerr << "index error in variable " << root->name << endl;
                     exit(1);
@@ -144,16 +169,16 @@ void analyze_statement(TreeNode* root, string curScopeName, SymbolTable* current
     if(root->op == IF){
         analyze_comparison(root->child[0], current);
         if(root->child[1] != NULL){
-            analyze_statement(root->child[1], curScopeName + ".if-stmt", current);
+            analyze_statement(root->child[1], curScopeName, current);
         }
         if(root->child[2] != NULL){
-            analyze_statement(root->child[1], curScopeName + ".else-stmt", current);
+            analyze_statement(root->child[1], curScopeName, current);
         }
     }else if(root->op == WHILE){
         current->table.insert(pair<string, nodeInfo>("loop", *(new nodeInfo)));
         analyze_comparison(root->child[0], current);
         if(root->child[1] != NULL){
-            analyze_statement(root->child[1], curScopeName + ".while-stmt", current);
+            analyze_statement(root->child[1], curScopeName, current);
         }
         current->table.erase("loop");
     }else if(root->op == RETURN){
@@ -240,6 +265,7 @@ void analyze_params(TreeNode* head, nodeInfo* info){
 
 SymbolTable* analyze(TreeNode * root){
     SymbolTable* st = new SymbolTable();
+    head = st;
     st->scopeName = "global";
     while(root != NULL){
         if(root -> op == V_DEC){

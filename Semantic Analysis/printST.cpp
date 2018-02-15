@@ -2,9 +2,7 @@
 //  printST.cpp
 //  Semantic Analysis
 //
-//  Created by 王璇 on 2017/11/25.
-//  Copyright © 2017年 Xuan Wang. All rights reserved.
-//
+
 #include <iostream>
 #include "globals.h"
 #include <iterator>

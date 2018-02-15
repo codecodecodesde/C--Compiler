@@ -2,9 +2,7 @@
 //  globals.h
 //  Lexical Analyzer
 //
-//  Created by 王璇 on 2017/10/08.
-//  Copyright © 2017年 Xuan Wang. All rights reserved.
-//
+
 #include <stdlib.h>
 #include <string>
 #ifndef globals_h

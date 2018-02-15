@@ -3,6 +3,7 @@
 //  Semantic Analysis
 //
 
+
 #include <iostream>
 #include "globals.h"
 #include <iterator>
@@ -10,7 +11,8 @@
 
 TreeNode * declarations();
 SymbolTable* analyze(TreeNode * p);
-void printST(SymbolTable *st);
+void codeGen(TreeNode *p);
+void printCode();
 
 int main(int argc, const char * argv[]) {
     TreeNode * program = declarations();
@@ -18,6 +20,7 @@ int main(int argc, const char * argv[]) {
         cerr << "no top-level expression\n";
         exit(1);
     }
-    SymbolTable* st = analyze(program);
-    printST(st);
+    analyze(program);
+    codeGen(program);
+    printCode();
 }

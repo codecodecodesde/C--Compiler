@@ -2,9 +2,7 @@
 //  parse.cpp
 //  Parser
 //
-//  Created by 王璇 on 2017/10/28.
-//  Copyright © 2017年 Xuan Wang. All rights reserved.
-//
+
 #include "globals.h"
 #include <stdio.h>
 #include <iostream>

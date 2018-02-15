@@ -2,9 +2,7 @@
 //  printAST.cpp
 //  Parser
 //
-//  Created by 王璇 on 2017/11/01.
-//  Copyright © 2017年 Xuan Wang. All rights reserved.
-//
+
 
 #include <stdio.h>
 #include <string>

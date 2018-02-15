@@ -50,6 +50,7 @@
 #define CALL 39
 #define INPUT 40
 #define INIT -1
+#define CODESIZE 1000;
 using namespace std;
 
 typedef struct {
@@ -70,6 +71,7 @@ public:
     bool isArray;//1: yes 0 : no
     int arraySize;//
     int index;//index or size;
+    bool isAddr;
 };
 
 
@@ -78,6 +80,7 @@ public:
     params* sibling;
     int type;
     bool isArray;
+    int offset;
     string param_name;
 };
 
@@ -89,6 +92,10 @@ public:
     int arraySize;
     bool isAssigned;
     int val;
+    int offset;
+    int Ibegin;
+    int called;
+    int numOfParams;
     params* paramList;
 };
 
@@ -98,7 +105,19 @@ public:
     SymbolTable* child;
     SymbolTable* sibling;
     string scopeName;
+    int offset;
     map<string, nodeInfo> table;
+};
+
+typedef enum {RO,RM} OpCodeType;
+
+class CodeType{
+public:
+    string opcode;
+    OpCodeType ctype;
+    int rand1;
+    int rand2;
+    int rand3;
 };
 
 #endif /* globals_h */

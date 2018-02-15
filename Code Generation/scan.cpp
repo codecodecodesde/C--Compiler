@@ -3,10 +3,8 @@
 //  Parser
 //
 
-
 #include <iostream>
 #include <string>
-#include <stdio.h>
 #include "globals.h"
 
 typedef enum {
