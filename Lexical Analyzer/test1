@@ -1,0 +1,9 @@
+/*this is test case No.1*/
+int main(){
+	int a[8]=12;
+	if(n==1){
+		a[1]>=1;
+	}else{
+		return n/5.8;
+	}
+}/*this is test case No.1*/
