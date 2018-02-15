@@ -1,0 +1,11 @@
+/*this test case check:
+ block statement*/
+
+int main(){
+	int x;
+	{
+		int y;
+		void x[6];
+		{}
+	}
+}

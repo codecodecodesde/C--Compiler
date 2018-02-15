@@ -1,0 +1,99 @@
+LL(1) grammar for C-- language
+
+declarations --> declaration declarations 
+			    |<EOF>
+declaration --> type ID dec_tail; 
+dec_tail --> ; 
+		    |[NUM];
+		    |(formals) block
+type --> INT 
+        |VOID
+formals --> type ID param_tail parameters
+		   |𝛆 
+parameters --> , type ID param_tail parameters
+              |𝛆
+param_tail --> []
+              |𝛆
+
+block --> {local-vars statements}
+local_vars --> type ID local_var_tail  local_vars
+              |𝛆
+local_var_tail --> [NUM];
+				  |𝛆
+statements --> statement statements
+              |𝛆
+statement --> block
+             |selection
+             |repetition
+             |return_stmt
+             |$ expression
+             |expr_stmt
+             |break;
+selection --> if (comparison) statement selection_tail
+selection_tail --> else statement
+                  |𝛆
+repetition --> while (comparison) statement
+return_stmt --> return expr_stmt
+expr_stmt --> ;
+             |expression;
+expression --> ID ID_tail var_tail
+			  | NUM non_ID_tail
+			  | (expression) non_ID_tail
+
+ID_tail --> [expression]
+	       |(actuals)
+	       |𝛆
+
+var_tail --> = expression
+			|addop term expr_tail
+			|mulop factor non_ID_tail
+			|𝛆
+			
+non_ID_tail -->	addop term expr_tail
+			   |mulop factor non_ID_tail
+			   |𝛆
+
+arith_expr --> term expr_tail
+expr_tail --> addop term expr_tail
+             |𝛆
+addop --> +
+         |-
+term --> factor term_tail
+term_tail --> mulop factor term_tail
+             |𝛆
+mulop --> *
+         |/
+factor --> var
+          |NUM
+          |call
+          |(expression)
+
+var --> ID ID_tail
+ID_tail --> [NUM]
+	       |(actuals)
+	       |𝛆
+
+call --> ID(actuals)
+
+actuals --> expression arguments
+           |𝛆
+arguments --> , expression arguments
+             |𝛆
+
+comparision --> ! (comparison)
+               |arith_expr compare_tail
+compare_tail --> relop arith_expr
+relop --> <=
+		 |>=
+		 |<
+		 |>
+		 |==
+		 |!=
+
+
+	   
+
+
+			    
+
+

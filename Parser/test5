@@ -1,0 +1,17 @@
+/*test5
+comparision, repetition, if*/
+
+int main(int x, void y){
+	int x;
+	int y[9];
+	if(!(x == c + 9 - 6 * 2)){
+		x = 4 + 9;
+	}else{
+		m = 0;
+	}
+
+	while(8 != (3 + 5)){
+		x = m + 3;
+		m = call(x, 6, 0);
+	}
+}

@@ -1,0 +1,8 @@
+/*test case: 
+assign in expression
+funcation call
+*/
+void main(){
+	x = y[9 + 8 / 10] = a(3);
+	z(5, m = 3, 4 + 5 * 9);
+} 

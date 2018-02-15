@@ -1,0 +1,21 @@
+/*this test case check:
+  var delcarations
+  func declarations
+  func parameters
+  local var declarations*/
+int x;
+void y;
+int z[7];
+
+int main(int p, int q[]){
+	int x;
+}
+
+int main(){
+	int a;
+	void b[3];
+}
+
+void convert(){
+	
+}
